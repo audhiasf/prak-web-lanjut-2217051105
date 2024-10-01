@@ -60,8 +60,8 @@
                 
                 <div class="profile-info">
                     <p class="lead"><?= $nama ?></p>
-                    <p class="lead"><?= $kelas ?></p>
                     <p class="lead"><?= $npm ?></p>
+                    <p class="lead"><?= $kelas ?></p>
                 </div>
                 
                 <hr class="my-4">
