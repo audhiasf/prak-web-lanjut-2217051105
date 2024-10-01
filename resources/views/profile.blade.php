@@ -59,9 +59,9 @@
                 <img src="https://64.media.tumblr.com/c2b4b882183d9a6ab4629f21ae17c9b1/bfe6ff9d7ab4cf95-b1/s2048x3072/d8b5cd8b4ddd3c0884c682370119ecfec396b786.jpg" alt="Profile Picture" class="profile-img img-fluid">
                 
                 <div class="profile-info">
-                    <p class="lead"><?= $nama ?></p>
-                    <p class="lead"><?= $npm ?></p>
-                    <p class="lead"><?= $kelas ?></p>
+                    <p class="lead">{{ $nama }}</p>
+                    <p class="lead">{{$npm}}</p>
+                    <p class="lead">{{ $nama_kelas ?? 'Kelas tidak ditemukan' }}</p>
                 </div>
                 
                 <hr class="my-4">
