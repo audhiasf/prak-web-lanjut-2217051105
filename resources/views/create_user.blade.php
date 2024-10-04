@@ -1,32 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create User</title>
-    <!-- Link to Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-</head>
-<style>
-    body{
-       background-color: #D2E0FB;
-    }
+@extends('layouts.app')
 
-    .btn-custom {
-        background-color: #7C93C3;
-        color: white;
-        transition: background-color 0.3s ease, border-color 0.3s ease;
-    }
-
-    .btn-custom:hover {
-        background-color: #536493;
-        border-color: #004085;
-        color: white;
-    }
-    
-</style>
-<body>
+@section('content')
     <div class="container d-flex justify-content-center align-items-center vh-100">
         <div class="card p-4" style="width: 30rem;">
             <h2 class="text-center mb-4">Form Create User</h2>
@@ -64,8 +38,5 @@
             </form>
         </div>
     </div>
+@endsection
 
-    <!-- Link to Bootstrap JS and Popper.js -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
