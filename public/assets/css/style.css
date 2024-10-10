@@ -16,7 +16,7 @@ body{
 
  hr{
     color: #55679C;
-    border-width: 2px; /* Remove default border */
+    border-width: 3px; /* Remove default border */
     margin: 20px 0;
 }
 .profile-card {
@@ -52,18 +52,16 @@ body{
 }
 
 table {
-    /* width: 50%; */
-    background-color: #FEF9D9;
-    /* border-collapse: collapse; */
+    
+    background-color: whitesmoke;
     margin: 20px 0;
 }
 
-table thead th {
-    background-color: #3A6D8C; 
-    color: white; /* Warna teks header */
-    padding: 12px 15px; /* Padding di dalam header */
+table.table thead th {
+    background-color: #3A6D8C;
+    color: white;
+    padding: 12px 15px;
     text-align: center;
-    border-bottom: 2px solid #dddddd; /* Garis bawah header */
 }
 
 table tbody td {
