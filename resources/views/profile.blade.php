@@ -5,7 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <title>Profile</title>
 </head>
 <style>
         body {
@@ -54,14 +56,28 @@
     <div class="container">
         <div class="profile-card text-center">
             <section class="jumbotron text-center">
-                <h1 class="display-4 mb-3">Profile</h1>
+            <div class="container text-center">
+                <div class="row align-items-center">
+                    <div class="col-2">
+                        <a href="{{ url('/user') }}" style="text-decoration: none; color:#7C93C3;"><i class="bi bi-arrow-left-circle" style="font-size: 2.5rem;"></i></a>
+                    </div>
+                    <div class="col-8">
+                        <h1 class="display-4 mb-3">Profile</h1>
+                    </div>
+                </div>
                 <hr class="my-4">
-                <img src="https://64.media.tumblr.com/c2b4b882183d9a6ab4629f21ae17c9b1/bfe6ff9d7ab4cf95-b1/s2048x3072/d8b5cd8b4ddd3c0884c682370119ecfec396b786.jpg" alt="Profile Picture" class="profile-img img-fluid">
+            </div>
                 
+                @if ($user->foto)
+                    <img src="{{ asset('assets/upload/img/'. $user->foto) }}" alt="Profile Image" class="profile-img img-fluid">
+                @else
+                    <img src="{{ asset('assets/img/profile.png') }}" alt="Default Profile Image" class="profile-img img-fluid">
+                @endif
+
                 <div class="profile-info">
-                    <p class="lead">{{ $nama }}</p>
-                    <p class="lead">{{$npm}}</p>
-                    <p class="lead">{{ $nama_kelas ?? 'Kelas tidak ditemukan' }}</p>
+                    <p class="lead">{{ $user->nama }}</p>
+                    <p class="lead">{{$user->npm}}</p>
+                    <p class="lead">{{ $user->nama_kelas ?? 'Kelas tidak ditemukan' }}</p>
                 </div>
                 
                 <hr class="my-4">
