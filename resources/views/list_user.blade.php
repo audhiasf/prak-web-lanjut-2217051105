@@ -4,15 +4,14 @@
 
 <div class="container mt-5">
     @if(session('success'))
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <div class="alert alert-secondary alert-dismissible fade show" role="alert">
             {{ session('success') }}
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     @endif
     <h1 class="text-center mb-4">LIST USER</h1>
     <hr>
-    <a href="{{ route('user.create') }}" class="btn
-    btn-primary mb-3">Tambah Pengguna Baru</a>
+    <a href="{{ route('user.create') }}" class="btn btn-primary mb-3">Tambah Pengguna Baru</a>
 
     <div class="table-responsive">
         <table class="table table-bordered table-striped table-hover w-100">
@@ -36,15 +35,22 @@
                     <td>
                         <!-- Menampilkan Foto -->
                         @if ($user->foto)
-                            <img src="{{ asset('assets/upload/img/'. $user->foto) }}" alt="Profile Image" class="rounded-circle" width="50" height="50">
+                            <img src="{{ asset('assets/upload/img/'. $user->foto) }}" alt="Profile Image" style="object-fit: cover; border-radius: 50%;" width="50" height="50">
                         @else
-                            <img src="{{ asset('assets/img/profile.png') }}" alt="Default Profile Image" class="rounded-circle" width="50" height="50">
+                            <img src="{{ asset('assets/img/profile.png') }}" alt="Default Profile Image" style="object-fit: cover; border-radius: 50%;" width="50" height="50">
                         @endif
                     </td>
                     <td>
-                        <a href="{{route('user.show',$user->id)}}" class="btn btn-custom-action mb-2">
-                             Detail
-                        </a>
+                        <!-- Menggunakan Flexbox agar tombol dalam satu baris -->
+                        <div class="d-flex justify-content-center">
+                            <a href="{{ route('user.show', $user->id) }}" class="btn btn-primary btn-sm me-1">Detail</a>
+                            <a href="{{ route('user.edit', $user->id) }}" class="btn btn-secondary btn-sm me-1">Edit</a>
+                            <form action="{{ route('user.destroy', $user->id) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus user ini?')">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                            </form>
+                        </div>
                     </td>
                 </tr>
                 @endforeach
