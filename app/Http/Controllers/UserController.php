@@ -51,6 +51,34 @@ class UserController extends Controller
 
         return view('create_user', $data );
     }
+
+    public function update(Request $request, $id){
+        $user = UserModel::findOrFail($id);
+
+        $user->nama = $request->nama;
+        $user->npm = $request->npm;
+        $user->kelas_id = $request->kelas_id;
+
+        if ($request->hasFile('foto')) {
+            $oldFilename = $user->foto;
+            if ($oldFilename) {
+                $oldFilePath = public_path('assets/upload/img/' . $oldFilename);
+                // Cek apakah file lama ada dan hapus
+                if (file_exists($oldFilePath)) {
+                    unlink($oldFilePath); // Hapus foto lama dari folder
+                }
+            }
+
+            $foto = $request->file('foto');
+            $fotoName = time() . '_' . $foto->getClientOriginalName();
+            $fotoPath = $foto->move(public_path('assets/upload/img'), $fotoName);
+            $user->foto = $fotoName;
+        }
+
+        $user->save();
+
+        return redirect()->to('/user')->with('success', 'User updated successfully');
+    }
     
     public function store(Request $request)
     {
@@ -88,5 +116,20 @@ class UserController extends Controller
         ];
     
         return view ('profile',$data);
+    }
+
+    public function edit($id){
+        $user = UserModel::findOrFail($id);
+        $kelasModel = new Kelas();
+        $kelas = $kelasModel->getKelas();
+        $title = 'Edit User';
+        return view ('edit_data', compact('user', 'kelas', 'title'));
+    }
+
+    public function destroy($id){
+        $user = UserModel::findOrFail($id);
+        $user->delete();
+
+        return redirect()->to('/user')->with('success', 'User berhasil dihapus');
     }
 }    

@@ -62,7 +62,12 @@
                         <a href="{{ url('/user') }}" style="text-decoration: none; color:#7C93C3;"><i class="bi bi-arrow-left-circle" style="font-size: 2.5rem;"></i></a>
                     </div>
                     <div class="col-8">
-                        <h1 class="display-4 mb-3">Profile</h1>
+                        <h1 class="display-4 mb-3">Profile</h1>                    
+                    </div>
+                    <div class="col-2">
+                    <a href="{{ route('user.edit', $user->id) }}" class="ms-3" style="color: #7C93C3;">
+                            <i class="bi bi-pencil-fill" style="font-size: 1.5rem;"></i>
+                        </a>
                     </div>
                 </div>
                 <hr class="my-4">
