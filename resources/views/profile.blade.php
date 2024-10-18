@@ -59,7 +59,7 @@
             <div class="container text-center">
                 <div class="row align-items-center">
                     <div class="col-2">
-                        <a href="{{ url('/user') }}" style="text-decoration: none; color:#7C93C3;"><i class="bi bi-arrow-left-circle" style="font-size: 2.5rem;"></i></a>
+                        <a href="{{ url('/') }}" style="text-decoration: none; color:#7C93C3;"><i class="bi bi-arrow-left-circle" style="font-size: 2.5rem;"></i></a>
                     </div>
                     <div class="col-8">
                         <h1 class="display-4 mb-3">Profile</h1>                    
@@ -74,7 +74,7 @@
             </div>
                 
                 @if ($user->foto)
-                    <img src="{{ asset('assets/upload/img/'. $user->foto) }}" alt="Profile Image" class="profile-img img-fluid">
+                    <img src="{{ asset('storage/uploads/'. $user->foto) }}" alt="Profile Image" class="profile-img img-fluid">
                 @else
                     <img src="{{ asset('assets/img/profile.png') }}" alt="Default Profile Image" class="profile-img img-fluid">
                 @endif

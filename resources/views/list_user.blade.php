@@ -35,7 +35,7 @@
                     <td>
                         <!-- Menampilkan Foto -->
                         @if ($user->foto)
-                            <img src="{{ asset('assets/upload/img/'. $user->foto) }}" alt="Profile Image" style="object-fit: cover; border-radius: 50%;" width="50" height="50">
+                            <img src="{{ asset('storage/uploads/'. $user->foto) }}" alt="Profile Image" style="object-fit: cover; border-radius: 50%;" width="50" height="50">
                         @else
                             <img src="{{ asset('assets/img/profile.png') }}" alt="Default Profile Image" style="object-fit: cover; border-radius: 50%;" width="50" height="50">
                         @endif
