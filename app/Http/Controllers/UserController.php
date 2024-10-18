@@ -62,7 +62,7 @@ class UserController extends Controller
         if ($request->hasFile('foto')) {
             $oldFilename = $user->foto;
             if ($oldFilename) {
-                $oldFilePath = public_path('assets/upload/img/' . $oldFilename);
+                $oldFilePath = public_path('storage/uploads/' . $oldFilename);
                 // Cek apakah file lama ada dan hapus
                 if (file_exists($oldFilePath)) {
                     unlink($oldFilePath); // Hapus foto lama dari folder
@@ -71,13 +71,13 @@ class UserController extends Controller
 
             $foto = $request->file('foto');
             $fotoName = time() . '_' . $foto->getClientOriginalName();
-            $fotoPath = $foto->move(public_path('assets/upload/img'), $fotoName);
+            $fotoPath = $foto->storeAs('uploads', $fotoName, 'public');
             $user->foto = $fotoName;
         }
 
         $user->save();
 
-        return redirect()->to('/user')->with('success', 'User updated successfully');
+        return redirect()->to('/')->with('success', 'User berhasil diupdate');
     }
     
     public function store(Request $request)
@@ -92,7 +92,7 @@ class UserController extends Controller
         if ($request->hasFile('foto')) {
             $foto = $request->file('foto');
             $fotoName = time() . '_' . $foto->getClientOriginalName();
-            $fotoPath = $foto->move(public_path('assets/upload/img'), $fotoName);
+            $fotoPath = $foto->storeAs('uploads', $fotoName);
         } else {
             $fotoPath = null; // Jika tidak ada foto yang diupload
         }
@@ -104,7 +104,7 @@ class UserController extends Controller
                 'foto' => $fotoPath ? $fotoName : null, 
             ]);
         
-        return redirect()->to('/user')->with('success', 'User berhasil ditambahkan');
+        return redirect()->to('/')->with('success', 'User berhasil ditambahkan');
         }
 
     public function show($id){
@@ -130,6 +130,6 @@ class UserController extends Controller
         $user = UserModel::findOrFail($id);
         $user->delete();
 
-        return redirect()->to('/user')->with('success', 'User berhasil dihapus');
+        return redirect()->to('/')->with('success', 'User berhasil dihapus');
     }
 }    

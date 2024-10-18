@@ -10,7 +10,7 @@
 
                 @if($user->foto)
                     <div class="text-center mb-3">
-                        <img src="{{ asset('assets/upload/img/' . $user->foto) }}" alt="User Foto" style="object-fit: cover; border-radius: 50%;" width="150" height="150">
+                        <img src="{{ asset('storage/uploads/' . $user->foto) }}" alt="User Foto" style="object-fit: cover; border-radius: 50%;" width="150" height="150">
                     </div>
                 @endif
 
@@ -50,7 +50,7 @@
                 </div>
                 <div class="text-center">
                     <input type="submit" class="btn btn-custom" value="Submit">
-                    <a href="{{ url('/user') }}" class="btn btn-custom">Back</a>
+                    <a href="{{ url('/') }}" class="btn btn-custom">Back</a>
                 </div>
             </form>
         </div>
