@@ -21,6 +21,8 @@
                     <th scope="col">Nama</th>
                     <th scope="col">NPM</th>
                     <th scope="col">Kelas</th>
+                    <th scope="col">Jurusan</th>
+                    <th scope="col">Fakultas</th>
                     <th scope="col">Foto</th>
                     <th scope="col">Aksi</th>
                 </tr>
@@ -32,6 +34,10 @@
                     <td class="text-nowrap">{{ $user->nama }}</td>
                     <td class="text-nowrap">{{ $user->npm }}</td>
                     <td class="text-nowrap">{{ $user->nama_kelas }}</td>
+                    <td class="text-nowrap">{{ $user->nama_jurusan }}</td>
+                    <td class="text-nowrap">
+                        {{ $user->nama_fakultas }}
+                    </td>
                     <td>
                         <!-- Menampilkan Foto -->
                         @if ($user->foto)

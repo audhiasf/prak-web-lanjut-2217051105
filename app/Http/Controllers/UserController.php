@@ -5,17 +5,22 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Kelas;
 use App\Models\UserModel;
+use App\Models\Jurusan;
+use App\Models\Fakultas;
+
 use App\Http\Requests\UserRequest;
 
 class UserController extends Controller
 {
     public $userModel;
     public $kelasModel;
+    public $jurusanModel;
     
     public function __construct()
     {
         $this->userModel = new UserModel();
         $this->kelasModel = new Kelas();
+        $this->jurusanModel = new Jurusan();
     }
 
     public function index(){
@@ -41,12 +46,15 @@ class UserController extends Controller
     public function create(){
 
         $kelasModel = new Kelas();
+        $jurusanModel = new Jurusan();
 
         $kelas = $kelasModel->getKelas();
+        $jurusan = $jurusanModel->getJurusan();
 
         $data = [
             'title' => 'Create User',
             'kelas' => $kelas,
+            'jurusan' => $jurusan,
         ];
 
         return view('create_user', $data );
@@ -62,7 +70,7 @@ class UserController extends Controller
         if ($request->hasFile('foto')) {
             $oldFilename = $user->foto;
             if ($oldFilename) {
-                $oldFilePath = public_path('storage/uploads/' . $oldFilename);
+                $oldFilePath = public_path('storage/public/uploads/' . $oldFilename);
                 // Cek apakah file lama ada dan hapus
                 if (file_exists($oldFilePath)) {
                     unlink($oldFilePath); // Hapus foto lama dari folder
@@ -87,14 +95,15 @@ class UserController extends Controller
         'npm' => 'required|string|max:255',
         'kelas_id' => 'required|integer',
         'foto' => 'image|file|max:2048',
+        'jurusan_id' => 'required|integer',
         ]);
     
         if ($request->hasFile('foto')) {
             $foto = $request->file('foto');
             $fotoName = time() . '_' . $foto->getClientOriginalName();
-            $fotoPath = $foto->storeAs('uploads', $fotoName);
+            $fotoPath = $foto->storeAs('uploads', $fotoName, 'public');
         } else {
-            $fotoPath = null; // Jika tidak ada foto yang diupload
+            $fotoPath = null; 
         }
 
             $this->userModel->create([
@@ -102,6 +111,7 @@ class UserController extends Controller
                 'npm' => $request->input('npm'),
                 'kelas_id' => $request->input('kelas_id'),
                 'foto' => $fotoPath ? $fotoName : null, 
+                'jurusan_id' => $request->input('jurusan_id'),
             ]);
         
         return redirect()->to('/')->with('success', 'User berhasil ditambahkan');
